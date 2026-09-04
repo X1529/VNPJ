@@ -70,6 +70,12 @@ async function addFkIfNotExists(table, fkName, fkDef) {
 
 async function initDatabase() {
   try {
+    // ยืนยันเป้าหมาย DB ใน log (ไม่ print รหัสผ่าน) — ถ้าเห็น localhost:3306 บน Render
+    // แปลว่า Environment Variables ยังไม่เข้าถึง process (ลืมตั้ง/สะกดผิด/ยังไม่ redeploy)
+    console.log(`🔌 MySQL target: ${dbConfig.host}:${dbConfig.port}/${dbConfig.database} (user=${dbConfig.user}, ssl=${dbConfig.ssl ? 'on' : 'off'})`);
+    if (process.env.NODE_ENV === 'production' && (dbConfig.host === 'localhost' || dbConfig.host === '127.0.0.1')) {
+      console.warn('⚠️ production แต่ DB_HOST ยังเป็น localhost — ตรวจ Render Dashboard → Environment ว่าตั้ง DB_HOST/DB_PORT/DB_USER/DB_PASSWORD/DB_NAME ครบและกด redeploy แล้ว');
+    }
     // แยก admin connection ออกมาสร้าง DB เท่านั้น แล้วปิดทันที
     // (TiDB Cloud บางแพลนไม่มีสิทธิ์ CREATE DATABASE — ถ้าสร้างไม่ได้ให้สร้าง DB
     //  ใน dashboard เองแล้วตั้ง DB_NAME ให้ตรง แอปจะข้ามขั้นนี้ไปต่อได้)
