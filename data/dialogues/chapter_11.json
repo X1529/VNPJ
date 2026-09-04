@@ -1,0 +1,95 @@
+{
+  "story_id": 8,
+  "title": "ก",
+  "next_id": 1,
+  "assets_preload": [],
+  "dialogues": [
+    {
+      "dialogue_id": 1,
+      "sort_order": 0,
+      "title": "ผู้บรรยาย",
+      "pos_x": 40,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "",
+          "identity": "",
+          "text": "Story",
+          "bg": null,
+          "bgm": null,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": 2,
+      "choices": [
+        {
+          "text": "f",
+          "next": 2
+        },
+        {
+          "text": "fe",
+          "next": 3
+        }
+      ]
+    },
+    {
+      "dialogue_id": 2,
+      "sort_order": 1,
+      "title": "",
+      "pos_x": 360,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "",
+          "identity": "",
+          "text": "f",
+          "bg": null,
+          "bgm": null,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 3,
+      "sort_order": 2,
+      "title": "",
+      "pos_x": 364,
+      "pos_y": 268,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "",
+          "identity": "",
+          "text": "w",
+          "bg": null,
+          "bgm": null,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    }
+  ]
+}

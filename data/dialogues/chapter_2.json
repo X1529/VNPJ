@@ -1,0 +1,437 @@
+{
+  "story_id": 1,
+  "title": "2",
+  "next_id": 32,
+  "assets_preload": [
+    {
+      "asset_id": 4,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "เรียวชู_ปกติ",
+      "file_name": "RyÅshÅ«_Scabbard_StandingSprite.png",
+      "file_path": "/assets/characters/เรียวชู/1787035752594-340852467-Ry__sh___Scabbard_StandingSprite.png",
+      "mime_type": "image/png",
+      "size_bytes": 526472,
+      "created_at": "2026-08-18T06:49:12.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/เรียวชู/1787035752594-340852467-Ry__sh___Scabbard_StandingSprite.png"
+    },
+    {
+      "asset_id": 7,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "background",
+      "asset_name": "ทะเล",
+      "file_name": "Story_Aboard_Mephistopheles's_Deck_1_BG.png",
+      "file_path": "/assets/backgrounds/1787035920261-71240580-Story_Aboard_Mephistopheles_s_Deck_1_BG.png",
+      "mime_type": "image/png",
+      "size_bytes": 1479257,
+      "created_at": "2026-08-18T06:52:00.000Z",
+      "updated_at": "2026-08-18T06:52:00.000Z",
+      "file_url": "http://localhost:3000/assets/backgrounds/1787035920261-71240580-Story_Aboard_Mephistopheles_s_Deck_1_BG.png"
+    },
+    {
+      "asset_id": 8,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "เรียวชู_ยิ้ม",
+      "file_name": "RyÅshÅ«_Scabbard_Sprite_12.png",
+      "file_path": "/assets/characters/เรียวชู/1787040074026-968534820-Ry__sh___Scabbard_Sprite_12.png",
+      "mime_type": "image/png",
+      "size_bytes": 527608,
+      "created_at": "2026-08-18T08:01:14.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/เรียวชู/1787040074026-968534820-Ry__sh___Scabbard_Sprite_12.png"
+    },
+    {
+      "asset_id": 17,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "ดอนกิโฆเต้_ตาประกาย",
+      "file_name": "Don_Quixote_Sprite_7.png",
+      "file_path": "/assets/characters/ดอนกิโฆเต้/1787283667482-260953570-Don_Quixote_Sprite_7.png",
+      "mime_type": "image/png",
+      "size_bytes": 607752,
+      "created_at": "2026-08-21T03:41:07.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/ดอนกิโฆเต้/1787283667482-260953570-Don_Quixote_Sprite_7.png"
+    },
+    {
+      "asset_id": 19,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "sfx",
+      "asset_name": "LIMBUS COMPANY!!!",
+      "file_name": "limbus-company-don-quixote-made-with-Voicemod.mp3",
+      "file_path": "/assets/sfx/1787284423561-147478691-limbus-company-don-quixote-made-with-Voicemod.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 40320,
+      "created_at": "2026-08-21T03:53:43.000Z",
+      "updated_at": "2026-08-21T03:53:43.000Z",
+      "file_url": "http://localhost:3000/assets/sfx/1787284423561-147478691-limbus-company-don-quixote-made-with-Voicemod.mp3"
+    },
+    {
+      "asset_id": 27,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "bgm",
+      "asset_name": "Limbus Company - Mephistopheles Story Theme",
+      "file_name": "Limbus Company - Mephistopheles Story Theme.mp3",
+      "file_path": "/assets/bgm/1787821482897-833198884-Limbus_Company_-_Mephistopheles_Story_Theme.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 1510432,
+      "created_at": "2026-08-27T09:04:42.000Z",
+      "updated_at": "2026-08-27T09:04:42.000Z",
+      "file_url": "http://localhost:3000/assets/bgm/1787821482897-833198884-Limbus_Company_-_Mephistopheles_Story_Theme.mp3"
+    }
+  ],
+  "dialogues": [
+    {
+      "dialogue_id": 9,
+      "sort_order": 0,
+      "title": "",
+      "pos_x": 40,
+      "pos_y": 41,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "you",
+          "identity": "",
+          "text": "\"นี่... เอ ตัวหนังสือที่ขึ้นอยู่บนหน้าจอนี่มันอะไรเหรอ? เหมือนเธอกำลังอ่านนิยายเลย แต่มีภาพตัวละครขยับไปมาด้วย\"",
+          "bg": 7,
+          "bgm": 27,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 10,
+      "sort_order": 1,
+      "title": "",
+      "pos_x": 360,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"อ๋อ! สิ่งที่คุณกำลังดูอยู่ตอนนี้ เขาเรียกว่า 'Visual Novel' หรือ 'วิชวลโนเวล' (นิยายภาพ) ยังไงล่ะจ๊ะ",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 4,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 11,
+      "sort_order": 2,
+      "title": "",
+      "pos_x": 680,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"ถ้าจะให้พูดให้เข้าใจง่ายที่สุดเลยนะ...\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 4,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 12,
+      "sort_order": 3,
+      "title": "",
+      "pos_x": 1000,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"มันคือ 'สื่อบันเทิงที่เป็นลูกครึ่งระหว่างเกมกับนิยาย' จ้ะ\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 4,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 15,
+      "sort_order": 4,
+      "title": "",
+      "pos_x": 40,
+      "pos_y": 290,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"ถ้าคุณอ่านนิยายทั่วไป คุณต้องใช้จินตนาการวาดภาพตัวละครและสถานที่เองใช่ไหมล่ะ? แต่สำหรับ Visual Novel...\"มีภาพกราฟิกสวยงาม: คุณจะเห็นหน้าตา ท่าทาง และอารมณ์ของตัวละครแบบชัดเจนมีดนตรีและเสียงประกอบ: สร้างบรรยากาศตามสถานการณ์ เช่น ฉากซึ้ง ฉากตื่นเต้น หรือฉากน่ากลัวมีเสียงพากย์: ตัวละครหลัก ๆ มักจะมีเสียงพูดช่วยให้อินกับบทบาทมากขึ้น",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 8,
+              "position": "center",
+              "highlight": true
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": [
+        {
+          "text": "\"อ้าว แล้วแบบนี้มันต่างจากนั่งดูอนิเมะยังไงล่ะ?\"",
+          "next": 17
+        }
+      ]
+    },
+    {
+      "dialogue_id": 17,
+      "sort_order": 6,
+      "title": "",
+      "pos_x": 372.88485069113096,
+      "pos_y": 293.7605936650066,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"เป็นคำถามที่ดีมาก! จุดเด่นที่สุดที่ต่างจากอนิเมะหรือนิยายเล่มก็คือ 'คุณสามารถเลือกทางเดินชีวิตของตัวเองได้' ยังไงล่ะ!\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 8,
+              "position": "center",
+              "highlight": true
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 19,
+      "sort_order": 7,
+      "title": "",
+      "pos_x": 1000,
+      "pos_y": 290,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"ในระบบเกมจะมี 'ตัวเลือก' โผล่ขึ้นมาให้คุณตัดสินใจ ทุกการตัดสินใจของคุณจะส่งผลต่อเนื้อเรื่อง ทำให้อาจจะไปเจอฉากจบที่สมหวัง (Good End) ฉากจบที่เศร้า (Bad End) หรือแยกไปตามรูทของตัวละครแต่ละคน\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 4,
+              "position": "center",
+              "highlight": true
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 20,
+      "sort_order": 8,
+      "title": "",
+      "pos_x": 40,
+      "pos_y": 540,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"หลายคนเลยมักจะคุ้นเคยกับสื่อประเภทนี้ในรูปแบบของ 'เกมจีบสาว' หรือ 'เกมจีบหนุ่ม' แต่จริง ๆ แล้วมันมีหลากหลายแนวมากเลยนะ ทั้งแนวสืบสวนระทึกขวัญ แฟนตาซี หรือไซไฟ\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 8,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 21,
+      "sort_order": 9,
+      "title": "",
+      "pos_x": 360,
+      "pos_y": 540,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"สรุปก็คือ... ตอนนี้คุณเองก็กำลังเล่นเกม Visual Novel อยู่ และฉัน... ก็คือนางเอกในเรื่องที่คุณกำลังคุยด้วยยังไงล่ะคะ!\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 8,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 22,
+      "sort_order": 10,
+      "title": "",
+      "pos_x": 680,
+      "pos_y": 540,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "เรียวชู",
+          "identity": "",
+          "text": "\"เอาล่ะ... นิ้วของคุณที่อยู่บนหน้าจอน่ะ พร้อมที่จะคลิกเพื่ออ่านเรื่องราวต่อไปของพวกเราหรือยังจ๊ะ?\"",
+          "bg": 7,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 4,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 31,
+      "sort_order": 11,
+      "title": "",
+      "pos_x": 1000,
+      "pos_y": 540,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ดอนกิโฆเต้",
+          "identity": "",
+          "text": "ตะโกน",
+          "bg": 7,
+          "bgm": null,
+          "sfx": 19,
+          "characters": [
+            {
+              "asset_id": 17,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": 3,
+      "choices": []
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+/* ════════════════════════════════════════════════════════════════════
+   Visual Novel Studio — asset-manager.css
+   คลัง Asset (Asset Manager section): grid การ์ด + ลากได้
+   ใช้ร่วมกับ base.css (โหลดก่อนไฟล์นี้)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ─── Asset Grid & Cards ──────────────────────────────────────────── */
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  min-height: 200px;
+}
+
+.asset-grid.hidden {
+  display: none;
+}
+
+.asset-card {
+  background-color: var(--bg-light);
+  border: 2px solid var(--border-light);
+  border-radius: 8px;
+  padding: 12px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  user-select: none;
+}
+
+.asset-card:hover {
+  border-color: var(--accent-indigo);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.asset-card:active {
+  cursor: grabbing;
+}
+
+.asset-card img,
+.asset-card audio {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  max-height: 80px;
+  object-fit: cover;
+}
+
+.asset-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.asset-card-emotion {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+}

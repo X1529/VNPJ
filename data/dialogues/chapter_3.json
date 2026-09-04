@@ -1,0 +1,343 @@
+{
+  "story_id": 1,
+  "title": "3",
+  "next_id": 30,
+  "assets_preload": [
+    {
+      "asset_id": 6,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "background",
+      "asset_name": "รถ",
+      "file_name": "Story_Aboard_Mephistopheles_10_BG.png",
+      "file_path": "/assets/backgrounds/1787035901361-40039250-Story_Aboard_Mephistopheles_10_BG.png",
+      "mime_type": "image/png",
+      "size_bytes": 1052868,
+      "created_at": "2026-08-18T06:51:41.000Z",
+      "updated_at": "2026-08-18T06:51:41.000Z",
+      "file_url": "http://localhost:3000/assets/backgrounds/1787035901361-40039250-Story_Aboard_Mephistopheles_10_BG.png"
+    },
+    {
+      "asset_id": 11,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "แวร์กิลิอุส_เหนื่อยหน่าย",
+      "file_name": "Vergilius_Sprite_8.png",
+      "file_path": "/assets/characters/แวร์กิลิอุส/1787283398483-921288530-Vergilius_Sprite_8.png",
+      "mime_type": "image/png",
+      "size_bytes": 440485,
+      "created_at": "2026-08-21T03:36:38.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/แวร์กิลิอุส/1787283398483-921288530-Vergilius_Sprite_8.png"
+    },
+    {
+      "asset_id": 12,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "ดอนกิโฆเต้",
+      "file_name": "Don_Quixote_StandingSprite.png",
+      "file_path": "/assets/characters/ดอนกิโฆเต้/1787283543693-913135519-Don_Quixote_StandingSprite.png",
+      "mime_type": "image/png",
+      "size_bytes": 525908,
+      "created_at": "2026-08-21T03:39:03.000Z",
+      "updated_at": "2026-08-21T14:42:51.000Z",
+      "file_url": "http://localhost:3000/assets/characters/ดอนกิโฆเต้/1787283543693-913135519-Don_Quixote_StandingSprite.png"
+    },
+    {
+      "asset_id": 15,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "ดอนกิโฆเต้_มองขวา",
+      "file_name": "Don_Quixote_Sprite_4.png",
+      "file_path": "/assets/characters/ดอนกิโฆเต้/1787283602690-750536286-Don_Quixote_Sprite_4.png",
+      "mime_type": "image/png",
+      "size_bytes": 607235,
+      "created_at": "2026-08-21T03:40:02.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/ดอนกิโฆเต้/1787283602690-750536286-Don_Quixote_Sprite_4.png"
+    },
+    {
+      "asset_id": 16,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "ดอนกิโฆเต้_มองซ้าย",
+      "file_name": "Don_Quixote_Sprite_5.png",
+      "file_path": "/assets/characters/ดอนกิโฆเต้/1787283623494-842943592-Don_Quixote_Sprite_5.png",
+      "mime_type": "image/png",
+      "size_bytes": 607353,
+      "created_at": "2026-08-21T03:40:23.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/ดอนกิโฆเต้/1787283623494-842943592-Don_Quixote_Sprite_5.png"
+    },
+    {
+      "asset_id": 17,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "ดอนกิโฆเต้_ตาประกาย",
+      "file_name": "Don_Quixote_Sprite_7.png",
+      "file_path": "/assets/characters/ดอนกิโฆเต้/1787283667482-260953570-Don_Quixote_Sprite_7.png",
+      "mime_type": "image/png",
+      "size_bytes": 607752,
+      "created_at": "2026-08-21T03:41:07.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/ดอนกิโฆเต้/1787283667482-260953570-Don_Quixote_Sprite_7.png"
+    },
+    {
+      "asset_id": 19,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "sfx",
+      "asset_name": "LIMBUS COMPANY!!!",
+      "file_name": "limbus-company-don-quixote-made-with-Voicemod.mp3",
+      "file_path": "/assets/sfx/1787284423561-147478691-limbus-company-don-quixote-made-with-Voicemod.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 40320,
+      "created_at": "2026-08-21T03:53:43.000Z",
+      "updated_at": "2026-08-21T03:53:43.000Z",
+      "file_url": "http://localhost:3000/assets/sfx/1787284423561-147478691-limbus-company-don-quixote-made-with-Voicemod.mp3"
+    },
+    {
+      "asset_id": 22,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "bgm",
+      "asset_name": "3",
+      "file_name": "27 Its TV Time_ DELTARUNE Chapter 3 4 Soundtrack - Toby Fox.mp3",
+      "file_path": "/assets/bgm/1787585363631-277806921-27_Its_TV_Time__DELTARUNE_Chapter_3_4_Soundtrack_-_Toby_Fox.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 2377621,
+      "created_at": "2026-08-24T15:29:23.000Z",
+      "updated_at": "2026-08-24T15:29:23.000Z",
+      "file_url": "http://localhost:3000/assets/bgm/1787585363631-277806921-27_Its_TV_Time__DELTARUNE_Chapter_3_4_Soundtrack_-_Toby_Fox.mp3"
+    },
+    {
+      "asset_id": 25,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "sfx",
+      "asset_name": "genshin-teleport",
+      "file_name": "genshin-teleport.mp3",
+      "file_path": "/assets/sfx/1787650609480-258657196-genshin-teleport.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 53171,
+      "created_at": "2026-08-25T09:36:49.000Z",
+      "updated_at": "2026-08-25T09:36:49.000Z",
+      "file_url": "http://localhost:3000/assets/sfx/1787650609480-258657196-genshin-teleport.mp3"
+    }
+  ],
+  "dialogues": [
+    {
+      "dialogue_id": 24,
+      "sort_order": 0,
+      "title": "",
+      "pos_x": 40,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ผู้บรรยาย",
+          "identity": "",
+          "text": "ณ ช่วงเวลาหนี่งในรถบัส ผู้โดยสารกำลังพักผ่อน มีเด็กสาวเดินออกมาตรงกลาง",
+          "bg": 6,
+          "bgm": null,
+          "sfx": 25,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 25,
+      "sort_order": 1,
+      "title": "ผู้บรรยาย",
+      "pos_x": 360,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ดอนกิโฆเต้",
+          "identity": "",
+          "text": "นั้น...ดอนกิโฆเต้",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 12,
+              "position": "center",
+              "highlight": true
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": 1,
+      "choices": []
+    },
+    {
+      "dialogue_id": 26,
+      "sort_order": 2,
+      "title": "1",
+      "pos_x": 680,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ผู้บรรยาย",
+          "identity": "",
+          "text": "เธอจะทำอะไรนะ",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 16,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 27,
+      "sort_order": 3,
+      "title": "",
+      "pos_x": 1000,
+      "pos_y": 40,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ผู้บรรยาย",
+          "identity": "",
+          "text": "...",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 15,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 28,
+      "sort_order": 4,
+      "title": "",
+      "pos_x": 40,
+      "pos_y": 290,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ผู้บรรยาย",
+          "identity": "",
+          "text": "...",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 12,
+              "position": "center"
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    },
+    {
+      "dialogue_id": 29,
+      "sort_order": 5,
+      "title": "",
+      "pos_x": 359,
+      "pos_y": 289.94846428718665,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "ดอนกิโฆเต้",
+          "identity": "",
+          "text": "LIMBUS COMPANY!!!",
+          "bg": 6,
+          "bgm": 22,
+          "sfx": 19,
+          "characters": [
+            {
+              "asset_id": 17,
+              "position": "center"
+            }
+          ],
+          "flash": true,
+          "flashDuration": 400,
+          "shake": true,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 1000
+        },
+        {
+          "speaker": "center",
+          "name": "แวร์กิลิอุส",
+          "identity": "",
+          "text": "",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [
+            {
+              "asset_id": 12,
+              "position": "left",
+              "highlight": false
+            },
+            {
+              "asset_id": 11,
+              "position": "right",
+              "highlight": true
+            }
+          ],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    }
+  ]
+}

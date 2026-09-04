@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Novel Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --bg-deep:      #0b0c16;
+    --bg-panel:     #171a2b;
+    --bg-panel-2:   #1d2136;
+    --line:         #2c3050;
+    --gold:         #c9a15c;
+    --gold-dim:     #8a744a;
+    --violet:       #8b7fd6;
+    --text-main:    #ece8df;
+    --text-muted:   #9d97b3;
+    --shadow-deep:  rgba(0, 0, 0, 0.65);
+
+    --font-display: "Noto Serif Thai", "Noto Serif", serif;
+    --font-body:    "Noto Sans Thai", "Noto Sans", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.hidden { display: none !important; }
+
+/* ===== Stage ===== */
+
+#game-screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg-deep);
+}
+
+#background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-deep);
+    transition: background-image 0.6s ease;
+}
+
+/* ===== Flash Overlay (กรอบจอขาว / Camera Flash) ===== */
+#flash-overlay {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+#flash-overlay.flash {
+    animation: flashAnim var(--flash-dur, 400ms) ease-out;
+}
+@keyframes flashAnim {
+    0%   { opacity: 0; }
+    12%  { opacity: 0.95; }
+    100% { opacity: 0; }
+}
+
+/* ===== Screen Shake ===== */
+#game-screen.shake-horizontal {
+    animation: shakeX var(--shake-dur, 0.3s) cubic-bezier(.36,.07,.19,.97) both;
+}
+#game-screen.shake-vertical {
+    animation: shakeY var(--shake-dur, 0.25s) ease-in-out both;
+}
+#game-screen.shake-heavy {
+    animation: shakeHeavy var(--shake-dur, 0.4s) ease-in-out both;
+}
+
+/* ───────── End-of-Chapter Alert Dialog ───────── */
+#end-chapter-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.65);
+}
+#end-chapter-modal.hidden { display: none; }
+#end-chapter-modal .ec-box {
+    background: #fff;
+    color: #1f2937;
+    padding: 28px 24px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+#end-chapter-modal .ec-box h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+#end-chapter-modal .ec-box p {
+    margin: 0 0 18px;
+    font-size: 14px;
+    color: #4b5563;
+}
+#end-chapter-modal .ec-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@keyframes shakeX {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+    40%, 60% { transform: translate3d(8px, 0, 0); }
+}
+@keyframes shakeY {
+    0%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-12px); }
+    40% { transform: translateY(8px); }
+    60% { transform: translateY(-5px); }
+    80% { transform: translateY(2px); }
+}
+@keyframes shakeHeavy {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    20%  { transform: translate(-10px, 8px) rotate(-1deg); }
+    40%  { transform: translate(10px, -8px) rotate(1deg); }
+    60%  { transform: translate(-6px, -6px) rotate(-0.5deg); }
+    80%  { transform: translate(6px, 6px) rotate(0.5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+#vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at center 40%, transparent 45%, rgba(5, 5, 12, 0.55) 100%),
+        linear-gradient(to bottom, rgba(5,5,12,0.35) 0%, transparent 20%, transparent 55%, rgba(5,5,12,0.75) 100%);
+}
+
+#game-screen.mode-special #stage,
+#game-screen.mode-special #background {
+    filter: brightness(0.4) saturate(0.6);
+}
+
+/* ===== Sprites ===== */
+
+#stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    /* คอลัมน์ข้างความกว้างตายตัว 34vw → สปไลต์ทั้ง 3 เท่ากันและเฉียดกลาง */
+    grid-template-columns: 34vw auto 34vw;
+    align-items: end;
+    padding: 0 2vw;
+    pointer-events: none;
+}
+
+.left-sprite   { justify-self: end; }
+.center-sprite { justify-self: center; }
+.right-sprite  { justify-self: start; }
+
+.sprite {
+    height: 78vh;
+    max-width: 32vw;
+    object-fit: contain;
+    object-position: bottom;
+    opacity: 0;
+    transform: translateY(2%);
+    filter: brightness(0.55) saturate(0.7);
+    transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
+}
+
+.sprite.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+}
+
+.sprite.dim {
+    filter: brightness(0.4) saturate(0.5);
+}
+
+.sprite.highlight {
+    filter: none;
+}
+
+.center-sprite { max-width: 32vw; }
+
+/* ===== Top controls ===== */
+
+#top-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 20;
+}
+
+.icon-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(23, 26, 43, 0.7);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--text-muted);
+    backdrop-filter: blur(6px);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
+.icon-btn:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+.icon-btn:active { transform: scale(0.94); }
+
+/* ===== Settings panel ===== */
+
+#settings-panel {
+    position: absolute;
+    top: 66px;
+    right: 20px;
+    width: 220px;
+    padding: 16px;
+    background: rgba(23, 26, 43, 0.9);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    z-index: 20;
+}
+
+.settings-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.settings-row + .settings-row { margin-top: 14px; }
+
+.settings-row input[type="range"] {
+    accent-color: var(--gold);
+}
+
+/* ===== Choices ===== */
+
+#choices {
+    position: absolute;
+    left: 50%;
+    bottom: 216px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(520px, 86vw);
+    z-index: 15;
+}
+
+#choices button {
+    padding: 13px 20px;
+    background: rgba(23, 26, 43, 0.88);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold-dim);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    text-align: left;
+    border-radius: 4px;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+
+#choices button:hover {
+    border-left-color: var(--gold);
+    background: rgba(29, 33, 54, 0.95);
+    transform: translateX(2px);
+}
+
+#choices button:focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 2px;
+}
+
+/* ===== Dialogue box ===== */
+
+#dialogue-box {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    width: min(880px, 92vw);
+    min-height: 150px;
+    padding: 34px 40px 24px;
+    background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-panel-2) 100%);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px var(--shadow-deep), inset 0 1px 0 rgba(255,255,255,0.03);
+    cursor: pointer;
+    z-index: 10;
+}
+
+#name-box {
+    position: absolute;
+    top: -30px;
+    left: 32px;
+    padding: 8px 22px 9px;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--gold-dim);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -4px 14px rgba(0,0,0,0.35);
+}
+
+#name-box::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.name-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+}
+
+.id-text {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+.id-text:empty { display: none; }
+
+.dialogue-text {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text-main);
+    white-space: pre-wrap;
+}
+
+#game-screen.mode-special #dialogue-box {
+    text-align: center;
+    background: rgba(11, 12, 22, 0.9);
+    border-color: var(--line);
+}
+
+#game-screen.mode-special .dialogue-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+#game-screen.mode-special #name-box {
+    display: none;
+}
+
+.advance-hint {
+    position: absolute;
+    right: 20px;
+    bottom: 14px;
+    color: var(--gold-dim);
+    font-size: 0.8rem;
+    animation: bob 1.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(4px); opacity: 1; }
+}
+
+/* ===== History log drawer ===== */
+
+#log-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 12, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 30;
+}
+
+#history-log {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(420px, 88vw);
+    background: var(--bg-panel);
+    border-left: 1px solid var(--line);
+    box-shadow: -20px 0 50px var(--shadow-deep);
+    z-index: 31;
+    display: flex;
+    flex-direction: column;
+}
+
+.log-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--gold);
+}
+
+#log-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 22px 40px;
+}
+
+.log-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.log-item:last-child { border-bottom: none; }
+
+.log-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.log-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-main);
+}
+
+.log-special-entry .log-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .sprite { height: 62vh; max-width: 32vw; }
+    .center-sprite { max-width: 32vw; }
+
+    #stage {
+        grid-template-columns: 0.4fr auto 0.4fr;
+        padding: 0 1vw;
+    }
+
+    #dialogue-box {
+        width: 94vw;
+        padding: 28px 22px 20px;
+        bottom: 14px;
+    }
+
+    #name-box { left: 18px; }
+
+    #choices {
+        width: 92vw;
+        bottom: 190px;
+    }
+
+    #history-log { width: 100vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sprite, #background, .icon-btn, #choices button {
+        transition: none;
+    }
+    .advance-hint {
+        animation: none;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="game-screen">
+        <div id="background"></div>
+        <div id="vignette"></div>
+        <div id="flash-overlay"></div>
+
+        <!-- ตัวละคร (ใช้อาเรย์ #stage ตาม CSS) -->
+        <div id="stage">
+            <img class="sprite left-sprite" alt="">
+            <img class="sprite center-sprite" alt="">
+            <img class="sprite right-sprite" alt="">
+        </div>
+
+        <!-- ปุ่มควบคุมมุมบนขวา -->
+        <div id="top-controls">
+            <a href="/home.html" id="home-btn" class="icon-btn" aria-label="ออกจากเกม กลับหน้าแรก" title="ออกจากเกม">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                    <path d="M10 17l5-5-5-5"/>
+                    <path d="M15 12H3"/>
+                </svg>
+            </a>
+            <button id="back-to-editor-btn" class="icon-btn hidden" aria-label="กลับหน้า Editor" title="กลับหน้า Editor" onclick="window.history.back()">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button id="log-open-btn" class="icon-btn" aria-label="ประวัติบทสนทนา">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M4 6h16M4 12h16M4 18h10"/>
+                </svg>
+            </button>
+            <button id="settings-toggle" class="icon-btn" aria-label="ตั้งค่า">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.37a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.64 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.63 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.63a1.7 1.7 0 0 0 1.04-1.56V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.63a1.7 1.7 0 0 0 1.87-.34l.06.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.37 9a1.7 1.7 0 0 0 1.56 1.04H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.56 1.04z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- แผงตั้งค่า -->
+        <div id="settings-panel" class="hidden">
+            <div class="settings-row">
+                <label for="bgmSlider">เพลงประกอบ</label>
+                <input type="range" id="bgmSlider" min="0" max="1" step="0.01" value="0.3">
+            </div>
+            <div class="settings-row">
+                <label for="sfxSlider">เสียงประกอบ</label>
+                <input type="range" id="sfxSlider" min="0" max="1" step="0.01" value="0.5">
+            </div>
+        </div>
+
+        <div id="choices"></div>
+
+        <div id="dialogue-box">
+            <div id="name-box">
+                <span class="name-text"></span>
+                <span class="id-text"></span>
+            </div>
+            <div class="dialogue-text">Loading...</div>
+            <div class="advance-hint">▼</div>
+        </div>
+
+        <!-- หน้าต่างประวัติบทสนทนา -->
+        <div id="log-overlay" class="hidden"></div>
+        <div id="history-log" class="hidden">
+            <div class="log-header">
+                <span>ประวัติบทสนทนา</span>
+                <button id="close-log" class="icon-btn" aria-label="ปิด">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M6 6l12 12M18 6L6 18"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="log-content"></div>
+        </div>
+    </div>
+
+    <!-- Alert Dialog จบตอน / เลือกตอนต่อไป -->
+    <div id="end-chapter-modal" class="hidden">
+        <div class="ec-box" role="dialog" aria-modal="true">
+            <h3 id="ec-title">จบตอน</h3>
+            <p id="ec-message"></p>
+            <div class="ec-actions" id="ec-actions"></div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="sprite.js"></script>
+    <script src="history.js"></script>
+    <script src="shared-auth.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

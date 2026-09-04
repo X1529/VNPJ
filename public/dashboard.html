@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Novel Studio - Unified Dashboard</title>
+  
+  <!-- เชื่อมต่อไฟล์ CSS ภายนอก -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/asset-manager.css">
+    <link rel="stylesheet" href="css/dialogue-editor.css">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span class="bar"></span>
+    </button>
+    <div class="title"><i class="bi bi-book-half"></i> Visual Novel Studio</div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+      <button class="nav-btn back-home-btn" id="backHomeBtn"><i class="bi bi-house-door"></i> กลับหน้าแรก</button>
+
+      <div class="nav-label">หน้าหลัก</div>
+      <button class="nav-btn active" data-section="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</button>
+      
+      <hr class="nav-divider">
+      <div class="nav-label">จัดการเนื้อหา</div>
+      <button class="nav-btn" data-section="asset-manager"><i class="bi bi-palette"></i> Asset Manager</button>
+      <button class="nav-btn" data-section="editor"><i class="bi bi-pencil-square"></i> Dialogue Editor</button>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content">
+
+      <!-- ===== SECTION 1: Dashboard (Story & Chapter Manager) ===== -->
+      <section id="dashboard" class="section active">
+        <div class="panel">
+          <div class="page-header">
+            <h1 class="page-title"><i class="bi bi-journals"></i> Visual Novel Management Dashboard</h1>
+          </div>
+
+          <!-- Story Manager -->
+          <div id="section-stories" class="box">
+            <h2><i class="bi bi-book"></i> Story ทั้งหมดของคุณ</h2>
+
+            <button class="btn-primary" type="button" onclick="openStoryModal()" style="margin-bottom: 20px;"><i class="bi bi-plus-lg"></i> สร้าง Story ใหม่</button>
+
+            <div class="story-grid" id="story-list"></div>
+          </div>
+
+          <!-- Chapter Manager -->
+          <div id="section-chapters" class="box hidden">
+            <div class="page-header page-header--sub">
+              <button class="btn-primary" onclick="backToStories()"><i class="bi bi-arrow-left"></i> กลับ</button>
+              <h2 class="page-title">จัดการตอนใน: <span class="sub" id="active-story-title"></span></h2>
+            </div>
+
+            <button class="btn-primary" type="button" onclick="openChapterModal()" style="margin-bottom: 20px;"><i class="bi bi-plus-lg"></i> สร้างตอนใหม่</button>
+
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 80px;">ตอนที่</th>
+                  <th>ชื่อตอน</th>
+                  <th>การทำงาน</th>
+                </tr>
+              </thead>
+              <tbody id="chapter-list"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 2: Asset Manager ===== -->
+      <section id="asset-manager" class="section">
+        <div class="panel">
+          <div class="page-header">
+            <h1 class="page-title"><i class="bi bi-palette"></i> Asset Manager - คลังเก็บทรัพยากร</h1>
+            <div class="header-actions">
+              <button class="btn-primary" type="button" onclick="openAssetModal('create')"><i class="bi bi-upload"></i> Upload New Asset</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="tabs">
+              <button class="tab-btn active" data-type="character"><i class="bi bi-person-square"></i> Characters</button>
+              <button class="tab-btn" data-type="background"><i class="bi bi-image"></i> Backgrounds</button>
+              <button class="tab-btn" data-type="bgm"><i class="bi bi-music-note-beamed"></i> BGM</button>
+              <button class="tab-btn" data-type="sfx"><i class="bi bi-volume-up"></i> SFX</button>
+            </div>
+            <div id="tab-character" class="asset-grid"></div>
+            <div id="tab-background" class="asset-grid hidden"></div>
+            <div id="tab-bgm" class="asset-grid hidden"></div>
+            <div id="tab-sfx" class="asset-grid hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION 3: Dialogue Editor ===== -->
+      <section id="editor" class="section">
+        <div class="panel">
+          <div class="page-header">
+            <button class="btn-primary" onclick="backToChaptersFromEditor()"><i class="bi bi-arrow-left"></i> กลับ</button>
+            <h1 class="page-title"><i class="bi bi-pencil-square"></i> Dialogue Editor — <span class="sub" id="editor-chapter-title">ยังไม่ได้เลือกตอน</span></h1>
+          </div>
+
+          <!-- Empty state: no chapter selected yet -->
+          <div id="editor-empty-state" class="box" style="text-align:center; padding: 40px; color: var(--muted);">
+            กรุณาเลือกตอน (Chapter) จากหน้า Dashboard ก่อน แล้วกด "<i class="bi bi-pencil-square"></i> แก้ไข" เพื่อเริ่มแก้ไขบทสนทนา
+          </div>
+
+          <div id="editor-body" class="hidden">
+            <div class="de-container de-container-full">
+              <!-- Center: Node Graph Canvas (เต็มจอ) -->
+              <div class="de-center-graph">
+                <div class="de-graph-toolbar">
+                  <button id="de-graph-add" class="btn-success"><i class="bi bi-plus-lg"></i> Add Node</button>
+                  <button id="de-graph-fit" class="btn-secondary" style="font-size:12px; padding:4px 10px;">Fit</button>
+                   <span class="de-graph-hint">Add Node → Double-click / ปุ่ม "เขียนบทสนทนา" ตั้งชื่อ Choices · ลากพื้นหลัง = ขยับแคนวาส · ล้อเลื่อน = ซูม · ลาก Port ขอบขวาของ Choice → Input(ซ้าย) Node เพื่อเชื่อม (ปล่อยที่ว่าง = ยกเลิก) · คลิกขวาบนเส้น → ✕ เพื่อตัดเส้นนั้น</span>
+                  <span id="de-save-status" class="de-save-status"></span>
+                </div>
+                <div class="de-graph-canvas" id="de-graph-canvas">
+                  <div class="de-graph-world" id="de-graph-world">
+                    <svg id="connections-layer"></svg>
+                  </div>
+                  <!-- เมนูคลิกขวาบนเส้นเชื่อม: กด ✕ เพื่อตัดเส้นนั้นทิ้ง -->
+                  <div id="de-edge-menu" class="de-edge-menu hidden">
+                    <button id="de-edge-menu-delete" class="de-edge-menu-del" type="button" title="ตัดเส้นเชื่อมนี้">
+                      <i class="bi bi-x-lg"></i> ตัดเส้นเชื่อม
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SECTION: Node Content Editor (Dialogue Editor แบบ old — หน้าแยก) ===== -->
+      <section id="node-editor" class="section">
+        <div class="panel">
+          <div class="page-header">
+            <button class="btn-primary" onclick="backToNodeGraph()"><i class="bi bi-arrow-left"></i> กลับกราฟ</button>
+            <h1 class="page-title"><i class="bi bi-pencil-square"></i> Dialogue Editor — Node #<span class="sub" id="nde-node-id">?</span></h1>
+            <div class="header-actions">
+              <button class="btn-success" onclick="saveNodeContent()"><i class="bi bi-check-lg"></i> บันทึก</button>
+            </div>
+          </div>
+
+          <div class="de-container">
+            <!-- Left: Lines in this Node -->
+            <div class="de-left-lines">
+              <div class="box de-lines-panel">
+                <h3>บรรทัดใน Node (<span id="nde-line-count">0</span>)</h3>
+                <div id="nde-line-list"></div>
+                <button id="nde-add-new-line-btn" class="btn-secondary" style="width:100%; margin-top:12px;">+ Add new line</button>
+              </div>
+            </div>
+
+            <!-- Center: Form -->
+            <div class="de-center-editor">
+              <div class="tabs nde-main-tabs">
+                <button class="tab-btn active" data-tab="line"><i class="bi bi-chat-left-text"></i> Edit Line</button>
+                <button class="tab-btn" data-tab="choices"><i class="bi bi-list-check"></i> Choices</button>
+                <button class="tab-btn" data-tab="effect"><i class="bi bi-lightning-charge"></i> Effect</button>
+                <button class="tab-btn" data-tab="next"><i class="bi bi-arrow-right-circle"></i> ตอนต่อไป</button>
+              </div>
+              <div class="box de-form-panel">
+                <!-- แท็บ: Edit Line -->
+                <div class="nde-tab-panel" data-tab="line">
+                  <h3 id="nde-form-title">Add / Edit Line</h3>
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-tag"></i> Node Title (optional)</h4>
+                    <div class="form-group">
+                      <input type="text" id="nde-node-title-input" placeholder="ชื่อ Node..." style="width:100%;">
+                    </div>
+                  </div>
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-chat-left-text"></i> บรรทัด (Line)</h4>
+                    <div class="form-group">
+                      <label>Speaker Name</label>
+                      <input type="text" id="nde-speaker-input" placeholder="e.g., Aria" style="width:100%;">
+                    </div>
+                    <div class="form-group">
+                      <label>Dialogue Text</label>
+                      <textarea id="nde-dialogue-input" placeholder="Enter dialogue text here..." style="width:100%; height:80px; resize:vertical;"></textarea>
+                    </div>
+                  </div>
+                  <div class="nde-section nde-section-characters">
+                    <h4 class="nde-section-title"><i class="bi bi-people"></i> ตัวละคร (Characters)</h4>
+                    <div class="de-drop-grid-characters">
+                      <div class="de-drop-zone" data-accept="character" data-position="left"><div class="de-zone-title">Left</div><span class="de-placeholder">Drop here</span></div>
+                      <div class="de-drop-zone" data-accept="character" data-position="center"><div class="de-zone-title">Center</div><span class="de-placeholder">Drop here</span></div>
+                      <div class="de-drop-zone" data-accept="character" data-position="right"><div class="de-zone-title">Right</div><span class="de-placeholder">Drop here</span></div>
+                    </div>
+                  </div>
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-images"></i> ทรัพยากรฉาก (Scene)</h4>
+                    <div class="de-drop-grid-assets">
+                      <div class="de-drop-zone" data-accept="background"><div class="de-zone-title">BG</div><span class="de-placeholder">Drop here</span></div>
+                      <div class="de-drop-zone" data-accept="bgm"><div class="de-zone-title">BGM</div><span class="de-placeholder">Drop here</span></div>
+                      <div class="de-drop-zone" data-accept="sfx"><div class="de-zone-title">SFX</div><span class="de-placeholder">Drop here</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- แท็บ: Choices -->
+                <div class="nde-tab-panel hidden" data-tab="choices">
+                  <h3>ตัวเลือก (Choices)</h3>
+                  <div class="nde-section nde-section-choices">
+                    <div id="nde-choices-container"></div>
+                    <button id="nde-add-choice-btn" class="btn-secondary" style="font-size:12px; padding:4px 8px;">+ Add choice</button>
+                  </div>
+                </div>
+
+                <!-- แท็บ: Effect -->
+                <div class="nde-tab-panel hidden" data-tab="effect">
+                  <h3>Effect</h3>
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-lightning-charge"></i> Flash (กรอบจอขาว)</h4>
+                    <div class="form-group">
+                      <label class="de-flag-check" style="font-size:13px;">
+                        <input type="checkbox" id="nde-flash-toggle"> เปิดใช้งาน Flash เมื่อแสดงบรรทัดนี้
+                      </label>
+                      <p class="nde-hint">เหมาะสำหรับฉากถ่ายรูป, ฟ้าผ่า, ฟ้าแลบ, การโจมตีรุนแรง หรือย้อนความทรงจำ (Flashback)</p>
+                    </div>
+                    <div class="form-group">
+                      <label>ระยะเวลาแสงสว่าง: <span id="nde-flash-duration-val">400</span> ms</label>
+                      <input type="range" id="nde-flash-duration" min="100" max="1500" step="50" value="400" style="width:100%;">
+                    </div>
+                    <button class="btn-secondary" type="button" onclick="previewFlashEffect()">ทดสอบแสงแฟลช</button>
+                  </div>
+
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-phone"></i> Screen Shake (สั่นจอ)</h4>
+                    <div class="form-group">
+                      <label class="de-flag-check" style="font-size:13px;">
+                        <input type="checkbox" id="nde-shake-toggle"> เปิดใช้งาน Screen Shake เมื่อแสดงบรรทัดนี้
+                      </label>
+                      <p class="nde-hint">เหมาะสำหรับฉากแผ่นดินไหว, ระเบิด, กระแทก, หรือฉากที่ต้องการความตื่นเต้น</p>
+                    </div>
+                    <div class="form-group">
+                      <label>ประเภทการสั่น:</label>
+                      <select id="nde-shake-type" style="width:100%;">
+                        <option value="shake-horizontal">แนวนอน (ซ้าย-ขวา) - ตื่นตระหนก</option>
+                        <option value="shake-vertical">แนวตั้ง (บน-ล่าง) - กระแทก</option>
+                        <option value="shake-heavy">หนัก 4 ทิศทาง - ระเบิด/แผ่นดินไหว</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>ระยะเวลาสั่น: <span id="nde-shake-duration-val">300</span> ms</label>
+                      <input type="range" id="nde-shake-duration" min="100" max="1000" step="50" value="300" style="width:100%;">
+                    </div>
+                    <button class="btn-secondary" type="button" onclick="previewShakeEffect()">ทดสอบการสั่น</button>
+                  </div>
+                </div>
+
+                <!-- แท็บ: ตอนต่อไป -->
+                <div class="nde-tab-panel hidden" data-tab="next">
+                  <h3>ตอนต่อไป</h3>
+                  <div class="nde-section">
+                    <h4 class="nde-section-title"><i class="bi bi-arrow-right-circle"></i> เส้นทางตอนต่อไป</h4>
+                    <div class="form-group">
+                      <label>เลือกตอนที่จะเล่นต่อ:</label>
+                      <select id="nde-next-chapter" style="width:100%;"></select>
+                      <p class="nde-hint">หากไม่เลือก เมื่อจบตอนจะแสดงเฉพาะปุ่มออก (กลับหน้าแรก)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="notification" id="nde-notification"></div>
+              </div>
+            </div>
+
+            <!-- Right: Asset Library -->
+            <div class="de-right-library">
+              <h3><i class="bi bi-collection"></i> Asset Library</h3>
+              <input type="text" id="nde-asset-search" class="de-search-input" placeholder="ค้นหาชื่อ asset...">
+              <div class="tabs" id="nde-tabs">
+                <button class="de-tab-btn active" data-type="all">ทั้งหมด</button>
+                <button class="de-tab-btn" data-type="character">Character</button>
+                <button class="de-tab-btn" data-type="background">BG</button>
+                <button class="de-tab-btn" data-type="bgm">BGM</button>
+                <button class="de-tab-btn" data-type="sfx">SFX</button>
+              </div>
+              <div class="de-card-list" id="nde-asset-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ===== Modal: สร้าง/แก้ไข Story ===== -->
+  <div id="story-modal" class="modal-overlay hidden">
+    <div class="modal-box" role="dialog" aria-modal="true" style="max-width: 460px; text-align: left;">
+      <h3 class="modal-title" id="story-modal-title" style="text-align: left;"><i class="bi bi-book"></i> สร้าง Story ใหม่</h3>
+      <input type="hidden" id="edit-story-id">
+      <div class="form-group">
+        <label>ชื่อเรื่อง</label>
+        <input type="text" id="new-story-title" placeholder="ชื่อเรื่อง...">
+      </div>
+      <div class="form-group">
+        <label>รูปปก (ไม่บังคับ) — เลือกไฟล์จากเครื่อง</label>
+        <input type="file" id="new-story-cover" accept="image/*">
+        <div id="story-cover-preview" class="cover-preview"></div>
+      </div>
+      <div class="form-group">
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+          <input type="checkbox" id="new-story-published"> เผยแพร่ (แสดงในหน้า Home สาธารณะ)
+        </label>
+      </div>
+      <div class="modal-actions" style="justify-content: flex-end; margin-top: 18px;">
+        <button class="btn-secondary" type="button" onclick="closeModalById('story-modal')">ยกเลิก</button>
+        <button class="btn-primary" type="button" onclick="saveStory()">บันทึก Story</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal: สร้าง/แก้ไขตอน ===== -->
+  <div id="chapter-modal" class="modal-overlay hidden">
+    <div class="modal-box" role="dialog" aria-modal="true" style="max-width: 460px; text-align: left;">
+      <h3 class="modal-title" id="chapter-modal-title" style="text-align: left;"><i class="bi bi-plus-lg"></i> สร้างตอนใหม่</h3>
+      <input type="hidden" id="edit-chapter-id">
+      <div class="form-group">
+        <label>เลขที่ตอน</label>
+        <input type="number" id="new-chapter-num" value="1" min="1" style="width: 110px;">
+      </div>
+      <div class="form-group">
+        <label>ชื่อตอน</label>
+        <input type="text" id="new-chapter-title" placeholder="ชื่อตอน...">
+      </div>
+      <div class="form-group">
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+          <input type="checkbox" id="new-chapter-exported"> ส่งออก (อนุญาตให้ผู้เล่นเล่นตอนนี้ได้)
+        </label>
+      </div>
+      <div class="modal-actions" style="justify-content: flex-end; margin-top: 18px;">
+        <button class="btn-secondary" type="button" onclick="closeModalById('chapter-modal')">ยกเลิก</button>
+        <button class="btn-primary" type="button" onclick="saveChapter()">บันทึกตอน</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal: Upload / Edit Asset ===== -->
+  <div id="asset-modal" class="modal-overlay hidden">
+    <div class="modal-box" role="dialog" aria-modal="true" style="max-width: 480px; text-align: left;">
+      <h3 class="modal-title" id="form-title" style="text-align: left;">Upload New Asset</h3>
+      <form id="asset-form">
+        <input type="hidden" id="asset-id">
+        <div class="form-group">
+          <label for="asset-category">Asset Category</label>
+          <select id="asset-category">
+            <option value="character">Character</option>
+            <option value="background">Background</option>
+            <option value="bgm">BGM</option>
+            <option value="sfx">SFX</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Asset Name</label>
+          <input type="text" id="asset-name" placeholder="เช่น aria, forest_night" required>
+        </div>
+        <div class="form-group">
+          <label>File</label>
+          <input type="file" id="asset-file" accept="image/*,audio/*">
+        </div>
+        <div class="modal-actions" style="justify-content: flex-end; margin-top: 18px;">
+          <button type="submit" class="btn-primary"><i class="bi bi-save"></i> Save Asset</button>
+          <button type="button" id="cancel-edit" class="btn-danger">ยกเลิก</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Alert / Confirm Dialog ===== -->
+  <div id="app-modal-overlay" class="modal-overlay hidden">
+    <div class="modal-box" role="alertdialog" aria-modal="true">
+      <div class="modal-icon info" id="app-modal-icon"></div>
+      <h3 class="modal-title" id="app-modal-title"></h3>
+      <p class="modal-message" id="app-modal-message"></p>
+      <div class="modal-actions" id="app-modal-actions"></div>
+    </div>
+  </div>
+
+  <!-- ===== Login Dialog (Google Sign-In) ===== -->
+  <div id="login-modal-overlay" class="modal-overlay hidden">
+    <div class="modal-box" role="dialog" aria-modal="true" style="text-align:center;">
+      <div class="modal-icon info"><i class="bi bi-google"></i></div>
+      <h3 class="modal-title">เข้าสู่ระบบ</h3>
+      <p class="modal-message">กรุณาล็อกอินด้วยบัญชี Google เพื่อใช้งานสตูดิโอ</p>
+      <div id="google-signin-btn" style="display:flex; justify-content:center; margin-top:16px;"></div>
+    </div>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="shared-auth.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="dialogue-editor.js"></script>
+  <script src="node-dialogue-editor.js"></script>
+</body>
+</html>

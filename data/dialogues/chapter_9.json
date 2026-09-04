@@ -1,0 +1,146 @@
+{
+  "story_id": 4,
+  "title": "ภายในรถเมล์ Mephistopheles",
+  "next_id": 1,
+  "assets_preload": [
+    {
+      "asset_id": 4,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "เรียวชู_ปกติ",
+      "file_name": "RyÅshÅ«_Scabbard_StandingSprite.png",
+      "file_path": "/assets/characters/เรียวชู/1787035752594-340852467-Ry__sh___Scabbard_StandingSprite.png",
+      "mime_type": "image/png",
+      "size_bytes": 526472,
+      "created_at": "2026-08-18T06:49:12.000Z",
+      "updated_at": "2026-08-21T07:47:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/เรียวชู/1787035752594-340852467-Ry__sh___Scabbard_StandingSprite.png"
+    },
+    {
+      "asset_id": 6,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "background",
+      "asset_name": "รถ",
+      "file_name": "Story_Aboard_Mephistopheles_10_BG.png",
+      "file_path": "/assets/backgrounds/1787035901361-40039250-Story_Aboard_Mephistopheles_10_BG.png",
+      "mime_type": "image/png",
+      "size_bytes": 1052868,
+      "created_at": "2026-08-18T06:51:41.000Z",
+      "updated_at": "2026-08-18T06:51:41.000Z",
+      "file_url": "http://localhost:3000/assets/backgrounds/1787035901361-40039250-Story_Aboard_Mephistopheles_10_BG.png"
+    },
+    {
+      "asset_id": 27,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "bgm",
+      "asset_name": "Limbus Company - Mephistopheles Story Theme",
+      "file_name": "Limbus Company - Mephistopheles Story Theme.mp3",
+      "file_path": "/assets/bgm/1787821482897-833198884-Limbus_Company_-_Mephistopheles_Story_Theme.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 1510432,
+      "created_at": "2026-08-27T09:04:42.000Z",
+      "updated_at": "2026-08-27T09:04:42.000Z",
+      "file_url": "http://localhost:3000/assets/bgm/1787821482897-833198884-Limbus_Company_-_Mephistopheles_Story_Theme.mp3"
+    },
+    {
+      "asset_id": 29,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "character",
+      "asset_name": "Heathcliff_Remember_Sprite_5",
+      "file_name": "Heathcliff_Remember_Sprite_5.png",
+      "file_path": "/assets/characters/Heathcliff/1787821872904-594743168-Heathcliff_Remember_Sprite_5.png",
+      "mime_type": "image/png",
+      "size_bytes": 546726,
+      "created_at": "2026-08-27T09:11:12.000Z",
+      "updated_at": "2026-08-27T09:11:12.000Z",
+      "file_url": "http://localhost:3000/assets/characters/Heathcliff/1787821872904-594743168-Heathcliff_Remember_Sprite_5.png"
+    },
+    {
+      "asset_id": 30,
+      "story_id": 1,
+      "chapter_id": null,
+      "asset_type": "sfx",
+      "asset_name": "box-crash-106687",
+      "file_name": "freesound_community-box-crash-106687.mp3",
+      "file_path": "/assets/bgm/1787822622837-440816167-freesound_community-box-crash-106687.mp3",
+      "mime_type": "audio/mpeg",
+      "size_bytes": 78576,
+      "created_at": "2026-08-27T09:23:42.000Z",
+      "updated_at": "2026-08-27T09:24:21.000Z",
+      "file_url": "http://localhost:3000/assets/bgm/1787822622837-440816167-freesound_community-box-crash-106687.mp3"
+    }
+  ],
+  "dialogues": [
+    {
+      "dialogue_id": 1,
+      "sort_order": 0,
+      "title": "",
+      "pos_x": 140,
+      "pos_y": 46,
+      "lines": [
+        {
+          "speaker": "center",
+          "name": "",
+          "identity": "",
+          "text": "วันนี้บรรยากาศในรถชวนอึดอัดกว่าปกติ... หรือพูดให้ถูกคือ พวกเขาไม่ได้ตีกันมาร่วมสิบนาทีแล้ว",
+          "bg": 6,
+          "bgm": 27,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        },
+        {
+          "speaker": "center",
+          "name": "",
+          "identity": "",
+          "text": "(ที่โต๊ะอาหารประจำรถ Heathcliff กำลังนั่งจ้องสมุดโน้ตปกหนังสีน้ำตาลเข้ม คิ้วขมวดควงเป็นปม มือถือปากกาเกร็งจนแทบหัก)",
+          "bg": 6,
+          "bgm": null,
+          "sfx": null,
+          "characters": [],
+          "flash": false,
+          "flashDuration": 400,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        },
+        {
+          "speaker": "center",
+          "name": "Heathcliff",
+          "identity": "",
+          "text": "โธ่เว้ย! คำภาษาอังกฤษพวกนี้มันจะใช้ยากอะไรขนาดนี้ฟะ!",
+          "bg": 6,
+          "bgm": null,
+          "sfx": 30,
+          "characters": [
+            {
+              "asset_id": 29,
+              "position": "center",
+              "highlight": true
+            },
+            {
+              "asset_id": 4,
+              "position": "right",
+              "highlight": true
+            }
+          ],
+          "flash": true,
+          "flashDuration": 100,
+          "shake": false,
+          "shakeType": "shake-horizontal",
+          "shakeDuration": 300
+        }
+      ],
+      "nextChapter": null,
+      "choices": []
+    }
+  ]
+}

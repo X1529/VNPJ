@@ -1,0 +1,24 @@
+{
+  "name": "vn-game-server",
+  "version": "1.0.0",
+  "description": "Backend API สำหรับ Visual Novel เกม - เสิร์ฟ dialogue (JSON) และ asset (รูป/เพลง/เสียง)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.1",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.19.0",
+    "jwt-decode": "^4.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.3.3"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0"
+  }
+}
