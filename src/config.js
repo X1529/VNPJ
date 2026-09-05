@@ -4,7 +4,7 @@
 const path = require('path');
 
 // Google OAuth2 Web Client ID (สาธารณะ — ใช้ฝั่ง client สำหรับ GIS ด้วย)
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '202739387346-6mprou5nas6i2pvahv6hqknn89o32igm.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '202739387346-0aoro9gpd9ne80tuiipslpmeb82j2jnj.apps.googleusercontent.com';
 
 const PORT = process.env.PORT || 3000;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
